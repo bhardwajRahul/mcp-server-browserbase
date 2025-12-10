@@ -103,7 +103,7 @@ async function handleScreenshot(
       const serverInstance = context.getServer();
 
       if (serverInstance) {
-        serverInstance.notification({
+        await serverInstance.notification({
           method: "notifications/resources/list_changed",
         });
       }

@@ -100,10 +100,11 @@ async function handleScreenshot(
       registerScreenshot(sessionId, name, screenshotBase64);
 
       // Notify the client that the resources changed
+      // Must await to ensure proper message ordering on the transport
       const serverInstance = context.getServer();
 
       if (serverInstance) {
-        serverInstance.notification({
+        await serverInstance.notification({
           method: "notifications/resources/list_changed",
         });
       }
